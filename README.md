@@ -15,5 +15,6 @@ Useful to start a new pygame project.
 pygame-template-keyboard.py
 ---------------------------
 
-The basic pygame template with a basic keyboard cursor implementation.
+The pygame template with a basic keyboard cursor implementation.
+It does nothing, but you have an example of use in examples/cursor.py
 

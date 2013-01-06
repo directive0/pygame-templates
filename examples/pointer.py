@@ -1,9 +1,8 @@
 #!/usr/bin/python
 #
 # -------------------------------------------------------------
-# template-keyboard - a template to start pygame programs with
-#                     basic keyboard management
-# 2013-01-04 Javier Cantero <jcantero@escomposlinux.org>
+# pointer - using a pointer with cursor keys
+# 2013-01-05 Javier Cantero <jcantero@escomposlinux.org>
 #
 # LICENSE:
 # Public Domain - Use what/where/how you like and remove this
@@ -33,6 +32,8 @@ DOWN_KEY = pygame.K_DOWN
 HORIZONTAL_LEFT, HORIZONTAL_NOT, HORIZONTAL_RIGHT = ( -1, 0, 1 )
 VERTICAL_UP, VERTICAL_NOT, VERTICAL_DOWN = ( -1, 0, 1 )
 
+POINTER_SPEED = 5
+
 
 class Game():
     def __init__(self):
@@ -44,7 +45,10 @@ class Game():
         left_key_pressed = right_key_pressed = up_key_pressed = down_key_pressed = False
         horizontal_dir = HORIZONTAL_NOT
         vertical_dir = VERTICAL_NOT
- 
+        pointer = pygame.image.load( "pointer.png" )
+        pointer_x = SCREEN_WIDTH / 2
+        pointer_y = SCREEN_HEIGHT / 2
+
         while True:
             delta_t = clock.tick( FRAME_RATE )
 
@@ -105,14 +109,22 @@ class Game():
             # --------------------------------------------------------------
 
             if vertical_dir == VERTICAL_UP:
-                pass
+                pointer_y -= POINTER_SPEED
+                if pointer_y < 0:
+                    pointer_y = 0
             elif vertical_dir == VERTICAL_DOWN:
-                pass
+                pointer_y += POINTER_SPEED
+                if pointer_y > SCREEN_HEIGHT:
+                    pointer_y = SCREEN_HEIGHT
             # change if for elif for 4-coordinates only movement
             if horizontal_dir == HORIZONTAL_LEFT:
-                pass
+                pointer_x -= POINTER_SPEED
+                if pointer_x < 0:
+                    pointer_x = 0
             elif horizontal_dir == HORIZONTAL_RIGHT:
-                pass
+                pointer_x += POINTER_SPEED
+                if pointer_x > SCREEN_WIDTH:
+                    pointer_x = SCREEN_WIDTH
 
             #
             #   R E N D E R
@@ -122,7 +134,7 @@ class Game():
             screen.fill( (0, 0, 0) ) # black background
 
             # blit the graphic elements to the screen surface
-
+            screen.blit( pointer, (pointer_x, pointer_y) )
 
             # update display
             pygame.display.update()
@@ -134,7 +146,7 @@ class Game():
 def main():
     pygame.init()
     screen = pygame.display.set_mode( (SCREEN_WIDTH, SCREEN_HEIGHT) )
-    pygame.display.set_caption( 'Keyboard' )
+    pygame.display.set_caption( 'Pointer' )
     #pygame.mouse.set_visible( False )
 
     game = Game()
