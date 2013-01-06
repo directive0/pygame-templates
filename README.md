@@ -16,5 +16,26 @@ pygame-template-keyboard.py
 ---------------------------
 
 The pygame template with a basic keyboard cursor implementation.
-It does nothing, but you have an example of use in examples/cursor.py
+It does nothing, but you have examples of use in examples/
+
+
+
+examples
+========
+
+
+pointer.py
+----------
+
+An example of use of pygame-template-keyboard.py that controls a pointer
+with cursor keys (you can change them). It needs a pointer.png image in
+the directory to work.
+
+
+pointer2.py
+-----------
+
+A more advanced version of pointe.py that check the bounds of the area
+in which the cursor can move using a rectangle. You can see the actual
+area toggling the space key.
 
