@@ -25,6 +25,12 @@ The pygame template with a basic class SpriteSheet to transform a
 sprite sheet into individual sprites. You have an example of use
 in examples/.
 
+pygame-template-mouse.py
+------------------------
+
+The pygame template with a basic mouse control implementation.
+It does nothing.
+
 examples
 ========
 
