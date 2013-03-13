@@ -39,10 +39,10 @@ class SpriteSheet():
             raise ValueError
 
         # compare the size of the grid area vs. the spritesheet size
-        spritesheet_rect = self.spritesheet.get_rect()
-        if cols * sprite_w + offset_x > spritesheet_rect.width:
+        spritesheet_w, spritesheet_h = self.spritesheet.get_size()
+        if cols * sprite_w + offset_x > spritesheet_w:
             raise ValueError
-        if rows * sprite_h + offset_y > spritesheet_rect.height:
+        if rows * sprite_h + offset_y > spritesheet_h:
             raise ValueError
 
         # calculate the rect of each sprite and populate the list
@@ -57,7 +57,7 @@ class SpriteSheet():
 
         return rects
 
-    def surfaces(self, size, offset, rows=1, cols=1, flags=None):
+    def surfaces(self, size, offset, rows=1, cols=1, flags=0):
         """ Return a list of Surfaces for each sprite in a grid of
             'rows' x 'cols' of sprites of 'size' size, starting
             at 'offset' point. The new Surfaces are created
@@ -71,10 +71,7 @@ class SpriteSheet():
 
         sprites = []
         for rect in rects:
-            if flags is not None:
-                sprite = pygame.Surface( size, flags )
-            else:
-                sprite = pygame.Surface( size )
+            sprite = pygame.Surface( size, flags )
             sprite.blit( self.spritesheet, (0,0), rect )
             sprites.append( sprite )
 
